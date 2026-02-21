@@ -24,7 +24,6 @@ vite.config.ts.timestamp-*
 
 .kilocode
 .vscode
-.npmrc
 .prettier*
 !.prettierrc
 !.prettierrc.*
