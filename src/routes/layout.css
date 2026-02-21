@@ -1,0 +1,65 @@
+@import "tailwindcss";
+@plugin 'flowbite/plugin';
+@custom-variant dark (&:where(.dark, .dark *));
+
+@source "../../node_modules/flowbite-svelte/dist";
+@source "../../node_modules/flowbite-svelte-icons/dist";
+
+/* Cross-browser range slider */
+.range-purple {
+	appearance: none;
+	-webkit-appearance: none;
+	background: transparent;
+}
+.range-purple::-webkit-slider-runnable-track {
+	height: 0.5rem;
+	border-radius: 9999px;
+	background-color: #e5e7eb;
+}
+.dark .range-purple::-webkit-slider-runnable-track {
+	background-color: #374151;
+}
+.range-purple::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 1.1rem;
+	height: 1.1rem;
+	border-radius: 9999px;
+	background-color: #7c3aed;
+	margin-top: -0.3rem;
+	cursor: pointer;
+	transition: background-color 0.15s;
+}
+.range-purple::-webkit-slider-thumb:hover {
+	background-color: #6d28d9;
+}
+.range-purple::-moz-range-track {
+	height: 0.5rem;
+	border-radius: 9999px;
+	background-color: #e5e7eb;
+}
+.dark .range-purple::-moz-range-track {
+	background-color: #374151;
+}
+.range-purple::-moz-range-thumb {
+	width: 1.1rem;
+	height: 1.1rem;
+	border-radius: 9999px;
+	background-color: #7c3aed;
+	border: none;
+	cursor: pointer;
+}
+
+@theme {
+	--color-primary-50: #f5f3ff;
+	--color-primary-100: #ede9fe;
+	--color-primary-200: #ddd6fe;
+	--color-primary-300: #c4b5fd;
+	--color-primary-400: #a78bfa;
+	--color-primary-500: #8b5cf6;
+	--color-primary-600: #7c3aed;
+	--color-primary-700: #6d28d9;
+	--color-primary-800: #5b21b6;
+	--color-primary-900: #4c1d95;
+	--color-primary-950: #2e1065;
+}
