@@ -5,6 +5,7 @@ export interface PasswordOptions {
 	useDigits: boolean;
 	useSpecial: boolean;
 	excludeAmbiguous: boolean;
+	specialChars?: string;
 }
 
 const CHARS = {
@@ -24,13 +25,13 @@ function randomIndex(max: number): number {
 }
 
 export function generatePassword(opts: PasswordOptions): string {
-	const { length, useUpper, useLower, useDigits, useSpecial, excludeAmbiguous } = opts;
+	const { length, useUpper, useLower, useDigits, useSpecial, excludeAmbiguous, specialChars } = opts;
 
 	const charsets: string[] = [];
 	if (useUpper) charsets.push(excludeAmbiguous ? CHARS.upperClean : CHARS.upperAll);
 	if (useLower) charsets.push(excludeAmbiguous ? CHARS.lowerClean : CHARS.lowerAll);
 	if (useDigits) charsets.push(excludeAmbiguous ? CHARS.digitsClean : CHARS.digitsAll);
-	if (useSpecial) charsets.push(CHARS.special);
+	if (useSpecial) charsets.push(specialChars && specialChars.length > 0 ? specialChars : CHARS.special);
 
 	if (charsets.length === 0) return '';
 

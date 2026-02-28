@@ -15,7 +15,7 @@ function charsetSize(opts: PasswordOptions): number {
 	if (opts.useUpper) size += opts.excludeAmbiguous ? 24 : 26;
 	if (opts.useLower) size += opts.excludeAmbiguous ? 24 : 26;
 	if (opts.useDigits) size += opts.excludeAmbiguous ? 8 : 10;
-	if (opts.useSpecial) size += 28;
+	if (opts.useSpecial) size += opts.specialChars && opts.specialChars.length > 0 ? opts.specialChars.length : 28;
 	return size;
 }
 

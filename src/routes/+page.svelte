@@ -10,6 +10,7 @@
 	let useLower = $state(true);
 	let useDigits = $state(true);
 	let useSpecial = $state(false);
+	let specialChars = $state('!@#$%^&*()_+-=[]{}|;:,.<>?');
 	let excludeAmbiguous = $state(true);
 	let password = $state('');
 	let showPassword = $state(true);
@@ -30,6 +31,7 @@
 		useDigits,
 		useSpecial,
 		excludeAmbiguous,
+		specialChars,
 	});
 
 	const strength = $derived(password ? calculateStrength(password, options) : null);
@@ -148,10 +150,36 @@
 			<div class="mb-4">
 				<div class="mb-2 flex items-center justify-between text-sm font-medium text-gray-700 dark:text-gray-300">
 					<span>{$t('length')}</span>
-					<span class="font-bold text-purple-600 dark:text-purple-400">
-						{effectiveLength}
-						{$t('characters')}
-					</span>
+					<div class="flex items-center gap-2">
+						<button
+							onclick={() => length = Math.max(4, length - 1)}
+							class="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-300
+								bg-white text-gray-600 transition-colors hover:bg-gray-50
+								dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+							type="button"
+						>
+							−
+						</button>
+						<input
+							type="number"
+							min="4"
+							max="128"
+							bind:value={length}
+							class="w-16 rounded-lg border border-gray-300 bg-white px-2 py-1 text-center
+								text-sm font-bold text-purple-600 focus:border-purple-500 focus:outline-none
+								dark:border-gray-600 dark:bg-gray-700 dark:text-purple-400"
+						/>
+						<button
+							onclick={() => length = Math.min(128, length + 1)}
+							class="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-300
+								bg-white text-gray-600 transition-colors hover:bg-gray-50
+								dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+							type="button"
+						>
+							+
+						</button>
+						<span class="ml-1 text-sm text-gray-500 dark:text-gray-400">{$t('characters')}</span>
+					</div>
 				</div>
 				<input
 					id="length"
@@ -172,28 +200,57 @@
 					<label
 						class="flex cursor-pointer items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
 					>
-						<input type="checkbox" bind:checked={useUpper} class="size-4 accent-purple-600" />
+						<input
+							type="checkbox"
+							bind:checked={useUpper}
+							class="checkbox-purple size-4"
+						/>
 						{$t('uppercase')}
 					</label>
 					<label
 						class="flex cursor-pointer items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
 					>
-						<input type="checkbox" bind:checked={useLower} class="size-4 accent-purple-600" />
+						<input
+							type="checkbox"
+							bind:checked={useLower}
+							class="checkbox-purple size-4"
+						/>
 						{$t('lowercase')}
 					</label>
 					<label
 						class="flex cursor-pointer items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
 					>
-						<input type="checkbox" bind:checked={useDigits} class="size-4 accent-purple-600" />
+						<input
+							type="checkbox"
+							bind:checked={useDigits}
+							class="checkbox-purple size-4"
+						/>
 						{$t('digits')}
 					</label>
 					<label
 						class="flex cursor-pointer items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
 					>
-						<input type="checkbox" bind:checked={useSpecial} class="size-4 accent-purple-600" />
+						<input
+							type="checkbox"
+							bind:checked={useSpecial}
+							class="checkbox-purple size-4"
+						/>
 						{$t('special')}
 					</label>
 				</div>
+				{#if useSpecial}
+					<div class="mt-2">
+						<input
+							type="text"
+							bind:value={specialChars}
+							placeholder={$t('custom_special')}
+							class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm
+								text-gray-900 placeholder-gray-400 focus:border-purple-500 focus:outline-none
+								dark:border-gray-600 dark:bg-gray-700 dark:text-white
+								dark:placeholder-gray-500 dark:focus:border-purple-400"
+						/>
+					</div>
+				{/if}
 			</fieldset>
 
 			<!-- Exclude ambiguous -->
@@ -203,7 +260,7 @@
 				<input
 					type="checkbox"
 					bind:checked={excludeAmbiguous}
-					class="mt-0.5 size-4 accent-purple-600"
+					class="checkbox-purple mt-0.5 size-4"
 				/>
 				<span>{$t('exclude_ambiguous')}</span>
 			</label>

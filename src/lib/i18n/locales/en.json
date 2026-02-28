@@ -13,6 +13,7 @@
 	"lowercase": "Lowercase (a-z)",
 	"digits": "Digits (0-9)",
 	"special": "Special (!@#$...)",
+	"custom_special": "Custom special characters",
 	"exclude_ambiguous": "Exclude ambiguous characters (l, 1, I, O, 0, o)",
 	"strength_label": "Password Strength",
 	"weak": "Weak",
