@@ -22,5 +22,11 @@
 	"excellent": "Excellent",
 	"copyright": "© 2024 SecurePass Gen. All rights reserved.",
 	"about": "About",
-	"no_charset": "Please select at least one character set."
+	"no_charset": "Please select at least one character set.",
+	"length_short": "Too short",
+	"could_be_longer": "Could be longer",
+	"add_categories": "Add more character types",
+	"add_more_categories": "Add all character types",
+	"exclude_ambiguous_help": "Exclude ambiguous characters",
+	"perfect": "Perfect password!"
 }
