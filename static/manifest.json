@@ -1,24 +1,29 @@
 {
-	"name": "SecurePass Gen",
+	"name": "SecurePass Gen - Password Generator",
 	"short_name": "SecurePass",
-	"description": "Cryptographically secure password generator",
+	"description": "Cryptographically secure password generator with client-side encryption",
 	"start_url": "/",
+	"scope": "/",
 	"display": "standalone",
+	"display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
 	"background_color": "#ffffff",
 	"theme_color": "#7c3aed",
-	"orientation": "portrait-primary",
+	"orientation": "any",
+	"categories": ["security", "utilities", "productivity"],
+	"lang": "en",
+	"dir": "ltr",
 	"icons": [
 		{
 			"src": "/icon-192.png",
 			"sizes": "192x192",
 			"type": "image/png",
-			"purpose": "any maskable"
+			"purpose": "any"
 		},
 		{
 			"src": "/icon-512.png",
 			"sizes": "512x512",
 			"type": "image/png",
-			"purpose": "any maskable"
+			"purpose": "any"
 		},
 		{
 			"src": "/icon-192-maskable.png",
@@ -32,5 +37,31 @@
 			"type": "image/png",
 			"purpose": "maskable"
 		}
-	]
+	],
+	"screenshots": [],
+	"shortcuts": [
+		{
+			"name": "Generate Password",
+			"short_name": "Generate",
+			"description": "Generate a new secure password",
+			"url": "/?action=generate",
+			"icons": [
+				{
+					"src": "/icon-192.png",
+					"sizes": "192x192"
+				}
+			]
+		}
+	],
+	"share_target": {
+		"action": "/share",
+		"method": "POST",
+		"enctype": "multipart/form-data",
+		"params": {
+			"title": "title",
+			"text": "text"
+		}
+	},
+	"prefer_related_applications": false,
+	"handle_links": "preferred"
 }

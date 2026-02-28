@@ -5,6 +5,45 @@
 @source "../../node_modules/flowbite-svelte/dist";
 @source "../../node_modules/flowbite-svelte-icons/dist";
 
+/* PWA Mobile Optimizations */
+@view-transition {
+	navigation: auto;
+}
+
+/* Safe area insets for notched devices (iPhone X+) */
+@supports (padding: max(0px)) {
+	body {
+		padding-left: env(safe-area-inset-left);
+		padding-right: env(safe-area-inset-right);
+	}
+}
+
+/* Prevent pull-to-refresh on mobile for better app feel */
+html {
+	overscroll-behavior-y: contain;
+}
+
+/* Smooth scrolling with reduced motion support */
+html {
+	scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+}
+
+/* Touch-friendly tap highlight */
+* {
+	-webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent text size adjustment on orientation change */
+html {
+	-webkit-text-size-adjust: 100%;
+}
+
 /* Cross-browser range slider */
 .range-purple {
 	appearance: none;
